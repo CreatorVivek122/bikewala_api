@@ -2,14 +2,19 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const assetRoutes = require("./routes/asset");
+const logoRoutes = require("./routes/logo");
+const cors = require('cors');
 
 const app = express();
 
 // ✅ Middleware FIRST
 app.use(express.json());
+app.use(cors());
 
 // ✅ Routes AFTER body parser
 app.use("/api", assetRoutes);
+app.use("/api", logoRoutes);
+
 
 // ✅ MongoDB connection
 mongoose
